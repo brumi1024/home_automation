@@ -1,0 +1,12 @@
+<div ng-controller="HistogramController as vm">
+  <md-content class="options option-buttons" ng-show="$showOptions">
+    <md-radio-group ng-model="vm.threeDayPeriod" ng-change="vm.changePeriod()">
+      <md-radio-button  ng-value="true">Last three days</md-radio-button>
+      <md-radio-button  ng-value="false">Last six months</md-radio-button>
+    </md-radio-group>
+  </md-content>
+
+  <md-content class="md-padding">
+    <nvd3 options="vm.chartOptions" data="vm.actualData"></nvd3>
+  </md-content>
+</div>

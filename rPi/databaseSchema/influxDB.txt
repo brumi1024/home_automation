@@ -1,0 +1,12 @@
+CREATE DATABASE weather_outside
+CREATE RETENTION POLICY "three_day" ON "weather_outside" DURATION 3d REPLICATION 1 DEFAULT
+CREATE RETENTION POLICY "six_month" ON "weather_outside" DURATION 26w REPLICATION 1
+CREATE RETENTION POLICY "long_term" ON "weather_outside" DURATION INF REPLICATION 1
+
+CREATE CONTINUOUS QUERY weather_3h ON weather_outside BEGIN SELECT mean(*) INTO weather_outside.six_month.downsampled_weather_data FROM weather_outside.three_day.weather_data GROUP BY time(3h) END
+CREATE CONTINUOUS QUERY weather_6h ON weather_outside BEGIN SELECT mean(*) INTO weather_outside.long_term.downsampled_weather_data FROM weather_outside.six_month.downsampled_weather_data GROUP BY time(6h) END
+
+CREATE USER admin WITH PASSWORD 'sm4rth0m1' WITH ALL PRIVILEGES
+
+CREATE USER node WITH PASSWORD 'sm4rth0m3'
+GRANT ALL ON "weather_outside" TO "node"

@@ -1,0 +1,31 @@
+<md-content class="actual-data-widget-content" ng-controller="ActualDataController as vm" layout="row"
+            layout-align="center center">
+    <div class="half-width-div min-max-container">
+        <div class="min-max-div">
+            <span>
+                Min: {{vm.actualData["min_" + vm.mode].value/vm.prefix[vm.mode] | number : 2}}
+                <span ng-bind-html="vm.units[vm.mode]">
+                </span>
+            </span> <br>
+            <span class="small-date">at {{vm.actualData["min_" + vm.mode].time | date:'H:mm MM/dd' : '+0200'}}</span>
+            <br>
+            <span>
+                Max: {{vm.actualData["max_" + vm.mode].value/vm.prefix[vm.mode] | number : 2}}
+                <span ng-bind-html="vm.units[vm.mode]">
+                </span>
+            </span> <br>
+            <span class="small-date">at {{vm.actualData["max_" + vm.mode].time | date:'H:mm MM/dd' : '+0200'}}</span>
+        </div>
+    </div>
+    <div class="half-width-div actual-data-container">
+        <span class="actual-data-value {{vm.mode}}-color">
+            {{vm.actualData["last_" + vm.mode].value/vm.prefix[vm.mode] | number : 2}}
+            <span ng-bind-html="vm.units[vm.mode]"></span>
+            <br>
+            <span class="long-unit" ng-if="vm.mode === 'uv_radiation'">
+                UV index: {{12.49 * (vm.actualData["last_" + vm.mode + "_raw"].value * ((2.8-0.99)/15) + 0.99) - 12.49 |  number : 1}} <!-- https://media.digikey.com/pdf/Application%20Notes/Rohm%20Application%20Notes/ML8511_UV.pdf -->
+            </span>
+        </span>
+    </div>
+</md-content>
+

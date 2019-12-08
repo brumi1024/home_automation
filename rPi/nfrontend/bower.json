@@ -1,0 +1,26 @@
+{
+  "name": "angular-smarthome-dashboard",
+  "description": "Smarthome Dashboard",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "angular-animate": "^1.6.4",
+    "angular-cookies": "^1.6.4",
+    "angular-touch": "^1.6.4",
+    "angular-sanitize": "^1.6.4",
+    "angular-ui-router": "^1.0.3",
+    "angular": "^1.6.4",
+    "angular-nvd3": "^1.0.9",
+    "angular-material": "^1.1.4",
+    "angular-mocks": "^1.6.4",
+    "socket.io": "^1.7.3",
+    "socket.io-client": "^1.7.2",
+    "angular-socket-io": "^0.7.0"
+  },
+  "devDependencies": {},
+  "overrides": {
+    "socket.io-client": {
+      "main": "dist/socket.io.js"
+    }
+  }
+}
